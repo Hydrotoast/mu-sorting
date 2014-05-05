@@ -1,0 +1,19 @@
+Import('env')
+
+# Clone the env_cloneironment
+env_clone = env.Clone()
+env_clone.Append(CPPPATH=['include'])
+
+# Compile source objects
+sources = Glob('src/*.cpp')
+objects = env_clone.Object(source=sources)
+
+# Test suite
+test_sources = Glob('test/*.cpp')
+test_objects = env_clone.Object(source=test_sources) + objects
+test = env_clone.Program(target='bin/test', source=test_objects)
+
+# Benchmark suite
+benchmark_sources = Glob('benchmarks/*.cpp')
+benchmark_objects = env_clone.Object(source=benchmark_sources) + objects
+benchmark = env_clone.Program(target='bin/benchmark', source=benchmark_objects)
