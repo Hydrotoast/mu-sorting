@@ -1,5 +1,5 @@
 #include "quicksort.h"
-#include "insertion_sort.h"
+#include "insertionsort.h"
 #include <algorithm>
 
 inline int median_of_three(int* xs, int lo, int hi) {
@@ -29,7 +29,7 @@ void quicksort(int* xs, int lo, int hi, size_t base_size) {
 	if (lo >= hi)
 		return;
 	if (hi - lo <= base_size) {
-		insertion_sort(xs, lo, hi);
+		insertionsort(xs, lo, hi);
 		return;
 	}
 

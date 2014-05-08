@@ -7,12 +7,7 @@ if mode not in ['debug', 'release']:
 
 print '**** Compiling in %s mode...' % mode
 
-includes = [
-	'/usr/local/include/unittest', 
-	'/usr/local/include/benchmark',
-	'/usr/local/include/debug'],
-
-env = Environment(CPPPATH=includes,
+env = Environment(CPPPATH=['#lib'],
 				  CXXFLAGS=['-std=c++11', '-O3', mode_flag])
 env.Replace(CXX='clang++')
 

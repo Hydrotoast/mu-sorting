@@ -1,9 +1,11 @@
-#include "insertion_sort.h"
+#include "insertionsort.h"
 #include "mergesort.h"
+#include "heapsort.h"
 #include "quicksort.h"
+#include "countingsort.h"
 
-#include "debug.h"
-#include "benchmark.h"
+#include "bootstrap/debug.h"
+#include "bootstrap/benchmark.h"
 
 #include <fstream>
 #include <sstream>
@@ -56,6 +58,18 @@ int main(int argc, char* argv[]) {
 		});
 		oss.str("");
 	}
+
+	input.seekg(0);
+	input.read((char*)samples, sizeof(int)*SAMPLE_SZ);
+	benchmark::unit("gcielo-heapsort", [samples]() {
+		heapsort(samples, SAMPLE_SZ);
+	});
+
+	input.seekg(0);
+	input.read((char*)samples, sizeof(int)*SAMPLE_SZ);
+	benchmark::unit("gcielo-countingsort", [samples]() {
+		countingsort(samples, SAMPLE_SZ);
+	});
 
 	input.close();
 	delete[] samples;

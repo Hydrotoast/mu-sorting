@@ -1,5 +1,5 @@
 #include "mergesort.h"
-#include "insertion_sort.h"
+#include "insertionsort.h"
 #include <algorithm>
 
 inline void merge(int* buffer, int* left, size_t left_length, int* right, 
@@ -21,7 +21,7 @@ void mergesort(int* xs, int* buffer, int lo, int hi, size_t base_size) {
 	if (lo >= hi)
 		return;
 	if (hi - lo <= base_size) {
-		insertion_sort(xs, lo, hi);
+		insertionsort(xs, lo, hi);
 		return;
 	}
 
